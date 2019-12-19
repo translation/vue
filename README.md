@@ -6,7 +6,23 @@ Currently it only supports the usage of the `$t` and `$tc` methods inside your .
 
 ## Installation
 
+### Globally (recommanded)
+
+You can install it globally by running this command
+
+```bash
+npm install @translation/vue -g
+```
+
+This will give you access to the `translation-vue` script.
+
+### Locally
+
+If you install it locally on a specific project, you will have to use the path instead: `node_modules/@translation/vue/bin/index.js` instead.
+
+```bash
 npm install @translation/vue --save
+```
 
 ## Configuration
 
