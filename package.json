@@ -6,6 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "bin/index.js",
   "scripts": {
     "build": "babel src -d bin",
     "format": "prettier \"src/**/*.{js,html}\" --write"
