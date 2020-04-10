@@ -29,11 +29,17 @@ var fetchSegmentsFromLanguageFiles = function fetchSegmentsFromLanguageFiles(con
   var languageFilesPath = (0, _path.resolve)(process.cwd(), config.translations_directory);
   var languageFiles = (0, _fs.readdirSync)(languageFilesPath).map(function (file) {
     var languagePath = (0, _path.resolve)(process.cwd(), config.translations_directory, file);
+    var languageObject;
 
-    var languageModule = require(languagePath);
+    if (config.output === 'module') {
+      languageObject = require(languagePath);
+    } else {
+      var languageModule = require(languagePath);
 
-    var defaultImport = languageModule["default"];
-    var languageObject = defaultImport ? defaultImport : languageModule;
+      var defaultImport = languageModule["default"];
+      languageObject = defaultImport ? defaultImport : languageModule;
+    }
+
     var fileName = file.replace(process.cwd(), '');
     return {
       fileName: fileName,

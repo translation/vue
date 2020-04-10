@@ -2,8 +2,7 @@ import * as log from '../util/log'
 import Translation from '../Translation'
 import { fetchSegmentsFromLanguageFiles } from '../util/languages'
 import { fetchSegmentsFromVueFiles } from '../util/source'
-import { join } from 'path'
-import { writeFileSync } from 'fs'
+import { writeLocaleFile } from '../util/helpers'
 
 export default function(config) {
     log.info('Synchronizing project over Translation.io ...')
@@ -82,15 +81,7 @@ export default function(config) {
             updatedSourceTranslations[segment.key] = segment.target
         })
 
-        writeFileSync(
-            join(
-                process.cwd(),
-                config.translations_directory,
-                `${config.source_locale}.json`
-            ),
-            JSON.stringify(updatedSourceTranslations, null, 4),
-            { encoding: 'utf8' }
-        )
+        writeLocaleFile(config.source_locale, updatedSourceTranslations, config)
     }
 
     const api = new Translation(config)
@@ -128,15 +119,7 @@ export default function(config) {
                 translations[segment.key] = segment.target
             })
 
-            writeFileSync(
-                join(
-                    process.cwd(),
-                    config.translations_directory,
-                    `${config.source_locale}.json`
-                ),
-                JSON.stringify(translations, null, 4),
-                { encoding: 'utf8' }
-            )
+            writeLocaleFile(config.source_locale, translations, config)
         })
     }
 
@@ -156,15 +139,7 @@ export default function(config) {
                     }
                 })
 
-                writeFileSync(
-                    join(
-                        process.cwd(),
-                        config.translations_directory,
-                        `${locale}.json`
-                    ),
-                    JSON.stringify(translations, null, 4),
-                    { encoding: 'utf8' }
-                )
+                writeLocaleFile(locale, translations, config)
             })
 
             if (config.purge) {

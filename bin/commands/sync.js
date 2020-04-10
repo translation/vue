@@ -15,9 +15,7 @@ var _languages = require("../util/languages");
 
 var _source = require("../util/source");
 
-var _path = require("path");
-
-var _fs = require("fs");
+var _helpers = require("../util/helpers");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -84,9 +82,7 @@ function _default(config) {
     sourceTranslations.forEach(function (segment) {
       updatedSourceTranslations[segment.key] = segment.target;
     });
-    (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), config.translations_directory, "".concat(config.source_locale, ".json")), JSON.stringify(updatedSourceTranslations, null, 4), {
-      encoding: 'utf8'
-    });
+    (0, _helpers.writeLocaleFile)(config.source_locale, updatedSourceTranslations, config);
   }
 
   var api = new _Translation["default"](config);
@@ -114,9 +110,7 @@ function _default(config) {
       sourceTranslations.forEach(function (segment) {
         translations[segment.key] = segment.target;
       });
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), config.translations_directory, "".concat(config.source_locale, ".json")), JSON.stringify(translations, null, 4), {
-        encoding: 'utf8'
-      });
+      (0, _helpers.writeLocaleFile)(config.source_locale, translations, config);
     });
   }
 
@@ -133,9 +127,7 @@ function _default(config) {
           }
         }
       });
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), config.translations_directory, "".concat(locale, ".json")), JSON.stringify(translations, null, 4), {
-        encoding: 'utf8'
-      });
+      (0, _helpers.writeLocaleFile)(locale, translations, config);
     });
 
     if (config.purge) {

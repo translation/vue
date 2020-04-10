@@ -1,5 +1,6 @@
 {
     "key": null,
+    "output": "json",
     "source_locale": "en",
     "target_locales": [],
     "source_path": "src/**/*.?(js|vue)",
