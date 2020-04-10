@@ -87,18 +87,6 @@ function _default(config) {
     (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), config.translations_directory, "".concat(config.source_locale, ".json")), JSON.stringify(updatedSourceTranslations, null, 4), {
       encoding: 'utf8'
     });
-
-    if (config.debug) {
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), 'translation-debug-sync-source-translations.json'), JSON.stringify(sourceTranslations, null, 4), {
-        encoding: 'utf8'
-      });
-    }
-  }
-
-  if (config.debug) {
-    (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), 'translation-debug-sync-segments.json'), JSON.stringify(sourceSegments, null, 4), {
-      encoding: 'utf8'
-    });
   }
 
   var api = new _Translation["default"](config);
@@ -133,12 +121,6 @@ function _default(config) {
   }
 
   api.sync(sourceSegments, config.readonly, config.purge).then(function (data) {
-    if (config.debug) {
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), 'translation-debug-sync-response.json'), JSON.stringify(data, null, 4), {
-        encoding: 'utf8'
-      });
-    }
-
     Object.keys(data.segments).forEach(function (locale) {
       var translations = {};
       data.segments[locale].forEach(function (segment) {

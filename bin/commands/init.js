@@ -61,13 +61,6 @@ function _default(config) {
       }
     });
   });
-
-  if (options.debug) {
-    (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), "translation-debug-segments.json"), JSON.stringify(segments, null, 4), {
-      encoding: 'utf8'
-    });
-  }
-
   Object.keys(segments).forEach(function (locale) {
     var languageTranslations = segmentsFromLanguageFiles[locale];
 
@@ -97,31 +90,9 @@ function _default(config) {
       });
     }
   });
-
-  if (options.debug) {
-    // Write debug files
-    Object.keys(segments).forEach(function (locale) {
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), "translation-debug-translations-".concat(locale, ".json")), JSON.stringify(segmentsFromLanguageFiles[locale], null, 4), {
-        encoding: 'utf8'
-      });
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), "translation-debug-segments-".concat(locale, ".json")), JSON.stringify(segments[locale], null, 4), {
-        encoding: 'utf8'
-      });
-      segments[locale].forEach(function (segment) {// console.log(locale, segment)
-      });
-    });
-  }
-
   var translation = new _Translation["default"](config);
   translation.init(segments).then(function (data) {
     log.success("Project `".concat(data.project.name, "` initialized with success."));
-
-    if (options.debug) {
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), "translation-debug-init-success.json"), JSON.stringify(data, null, 4), {
-        encoding: 'utf8'
-      });
-    }
-
     Object.keys(data.segments).forEach(function (locale) {
       var translations = {};
       data.segments[locale].forEach(function (segment) {
@@ -135,11 +106,6 @@ function _default(config) {
         encoding: 'utf8'
       });
     });
-  }, function (error) {
-    if (options.debug) {
-      (0, _fs.writeFileSync)((0, _path.join)(process.cwd(), "translation-debug-init-error.json"), JSON.stringify(error, null, 4), {
-        encoding: 'utf8'
-      });
-    }
+  }, function (error) {//
   });
 }

@@ -1,7 +1,0 @@
-{
-    "key": null,
-    "source_locale": "en",
-    "target_locales": [],
-    "gettext_parse_paths": ["src"],
-    "gettext_locales_path": "src/lang"
-}

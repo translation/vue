@@ -1,0 +1,7 @@
+{
+    "key": null,
+    "source_locale": "en",
+    "target_locales": [],
+    "source_path": "src/**/*.?(js|vue)",
+    "translations_directory": "src/lang"
+}
