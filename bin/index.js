@@ -23,7 +23,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 _commander["default"].version(_package["default"].version, '-v, --version').option('-c, --config <path>', 'Set the config path. Defaults to ./translation.json', './translation.json');
 
-_commander["default"].command('init').description('Init the translation.io project by pushing all source and translated text into the backend. This should only be executed one time per project.').option('-d, --debug', 'Enable debug mode').action(function (options) {
+_commander["default"].command('init').description('Init the translation.io project by pushing all source and translated text into the backend. This should only be executed one time per project.').action(function (options) {
   var config = (0, _resolveConfig["default"])(options, _commander["default"].config);
 
   if (config === null) {
@@ -34,7 +34,7 @@ _commander["default"].command('init').description('Init the translation.io proje
   (0, _init["default"])(config);
 });
 
-_commander["default"].command('sync').description('Sync translations').option('-p, --purge', 'Purge when syncing keys', false).option('-r, --readonly', 'Only pull translations (do not push local translations)', false).option('-d, --debug', 'Enable debug mode').action(function (options) {
+_commander["default"].command('sync').description('Sync translations').option('-p, --purge', 'Purge when syncing keys', false).option('-r, --readonly', 'Only pull translations (do not push local translations)', false).action(function (options) {
   var config = (0, _resolveConfig["default"])(options, _commander["default"].config);
 
   if (config === null) {
