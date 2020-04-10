@@ -22,10 +22,16 @@ export const fetchSegmentsFromLanguageFiles = config => {
             file
         )
 
-        const languageModule = require(languagePath)
-        const { default: defaultImport } = languageModule
+        let languageObject
 
-        const languageObject = defaultImport ? defaultImport : languageModule
+        if (config.output === 'module') {
+            languageObject = require(languagePath)
+        } else {
+            const languageModule = require(languagePath)
+            const { default: defaultImport } = languageModule
+
+            languageObject = defaultImport ? defaultImport : languageModule
+        }
 
         const fileName = file.replace(process.cwd(), '')
 
